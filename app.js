@@ -24,7 +24,7 @@ app.use('/', (req, res, next) => {
     next();
 });
 
-app.use('/', covidRouter);
+app.use('/', indexRouter);
 app.use('/covid', covidRouter);
 app.use('/traffic', trafficRouter);
 app.use('/mobility', mobilityRouter);

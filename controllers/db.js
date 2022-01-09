@@ -9,8 +9,10 @@ const pool = isProduction ? new Pool({connectionStringProd}) : new Pool({connect
 
 if (isProduction) {
   console.log("Prod")
+  console.log(pool)
 } else {
   console.log("Dev")
+  console.log(pool)
 }
 /*
 pool.query('SELECT NOW()', (err, res) => {
