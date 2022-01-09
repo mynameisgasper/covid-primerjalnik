@@ -14,20 +14,6 @@ if (isProduction) {
   console.log("Dev")
   console.log(pool)
 }
-/*
-pool.query('SELECT NOW()', (err, res) => {
-  console.log(err, res)
-  pool.end()
-})
-const client = new Client({
-  connectionString,
-})
-client.connect()
-
-client.query('SELECT NOW()', (err, res) => {
-  console.log(err, res)
-  client.end()
-})*/
 
 async function query(query, params) {
     const {rows, fields} = await pool.query(query, params);
