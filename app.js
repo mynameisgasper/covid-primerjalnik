@@ -15,7 +15,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public', 'build')));
+app.use(express.static(path.join(__dirname, 'public', 'dist', 'public')));
+/*app.use("/*",function(req,res){
+    res.sendFile(path.join(__dirname, 'public', 'dist', 'public', 'index.html'));
+});*/
 console.log(__dirname)
 
 app.use('/', (req, res, next) => {
@@ -26,16 +29,15 @@ app.use('/', (req, res, next) => {
     next();
 });
 
-app.use('/', indexRouter);
 app.use('/covid', covidRouter);
 app.use('/traffic', trafficRouter);
 app.use('/mobility', mobilityRouter);
 
 /** ce se ne ujema z url-jem za API, ga bo preusmerilo na Angular frontend **/
 /** todo **/
-// const distFolder = isProduction?:'build';
+//const distFolder = isProduction?:'build';
 app.use("/*",function(req,res){
-    res.sendFile(path.join(__dirname,'..','public','dist', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'dist', 'public', 'index.html'));
 });
 
 
