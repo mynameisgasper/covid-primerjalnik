@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "heroku-postbuild": "npm install && npm install angular/cli -g && cd public && npm install && npm install angular/cli -g && ng build --prod",
+    "heroku-postbuild": "npm install && npm install @angular/cli -g && cd public && npm install && npm install @angular/cli -g && ng build --prod",
     "heroku-cleanup": "cd ./public && patch-package"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "pg": "^8.7.1"
   },
   "engines": {
-    "node": "16.10"
+    "node": "16.10",
+    "npm": "7.24.0"
   }
 }
