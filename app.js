@@ -15,13 +15,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public', 'dist', 'public')));
-/*app.use("/*",function(req,res){
-    res.sendFile(path.join(__dirname, 'public', 'dist', 'public', 'index.html'));
-});*/
-console.log(__dirname)
 
-app.use('/', (req, res, next) => {
+app.use('/api', (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.header('Access-Control-Expose-Headers', 'X-Total-Count');
@@ -29,13 +24,14 @@ app.use('/', (req, res, next) => {
     next();
 });
 
-app.use('/covid', covidRouter);
-app.use('/traffic', trafficRouter);
-app.use('/mobility', mobilityRouter);
+app.use('/api/covid', covidRouter);
+app.use('/api/traffic', trafficRouter);
+app.use('/api/mobility', mobilityRouter);
 
 /** ce se ne ujema z url-jem za API, ga bo preusmerilo na Angular frontend **/
 /** todo **/
 //const distFolder = isProduction?:'build';
+app.use(express.static(path.join(__dirname, 'public','dist', 'public')));
 app.use("/*",function(req,res){
     res.sendFile(path.join(__dirname, 'public', 'dist', 'public', 'index.html'));
 });

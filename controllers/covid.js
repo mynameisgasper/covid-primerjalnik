@@ -2,6 +2,7 @@ const db = require('./db');
 const helper = require('../helper');
 
 async function getCovidData(dateFrom, dateTo, region) {
+  console.log("COVID1")
   let odgovor = [];
   if (region == "Slovenija" || region == null || region == '') {
     odgovor.push(await covidRead(dateFrom, dateTo, "CASES", "cases_confirmed"));
@@ -27,6 +28,7 @@ async function getCovidData(dateFrom, dateTo, region) {
 }
 
 async function getCovidToDateData(dateFrom, dateTo, region) {
+  console.log("COVID2")
   let odgovor = [];
   if (region == "Slovenija" || region == null || region == '') {
     odgovor.push(await covidRead(dateFrom, dateTo, "CASES", "cases_confirmed_todate"));
@@ -48,6 +50,7 @@ async function getCovidToDateData(dateFrom, dateTo, region) {
 }
 
 async function getGovRes(dateFrom, dateTo) {
+  console.log("COVID3")
   let odgovor = [];
   
   odgovor.push(await covidRead(dateFrom, dateTo, "POLICY", "governmentresponseindex"));
