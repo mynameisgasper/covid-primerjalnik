@@ -1,0 +1,30 @@
+@import "~@angular/material/prebuilt-themes/purple-green.css";
+
+.navbar {
+  margin-bottom: 20px;
+  background-color: #2f3646 !important;
+}
+
+.navbar-custom {
+    background-color: #2f3646;
+}
+
+body {
+  padding-top: 65px; 
+  background: #1b1e27;
+  color: #a0aabe;
+  padding-bottom: 65px; 
+}
+
+.ngx-charts text { 
+  fill: #a0aabe; 
+}
+
+h4 {
+  margin-top: 4%;
+}
+
+img {
+  width: 30px;
+  height: 30px;
+}

@@ -1,0 +1,150 @@
+<app-nav-bar></app-nav-bar>
+<div class="container" #container>
+    <!-- COVID -->
+    <h4>STANJE V SLOVENIJI NA DAN</h4>
+    <div class="row">
+        <mat-form-field appearance="fill">
+            <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate placeholder="Datum od" #dateFrom>
+            <input matEndDate  placeholder="Datum do" #dateTo (dateChange)="formatDateAndGetCovidData(dateFrom.value, dateTo.value)">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Regije</mat-label>
+            <mat-select [formControl]="regionForm1" [(ngModel)]="defRegion1">
+                <mat-option value="Slovenija">Slovenija</mat-option>
+                <mat-optgroup [label]="'Regije'">
+                    <mat-option value="kr">Gorenjska</mat-option>
+                    <mat-option value="ng">Goriška</mat-option>
+                    <mat-option value="nm">Jugovzhodna</mat-option>
+                    <mat-option value="sg">Koroška</mat-option>
+                    <mat-option value="kp">Obalno-kraška</mat-option>
+                    <mat-option value="lj">Osrednjeslovenska</mat-option>
+                    <mat-option value="mb">Podravska</mat-option>
+                    <mat-option value="ms">Pomurska</mat-option>
+                    <mat-option value="kk">Posavska</mat-option>
+                    <mat-option value="po">Primorsko-notranjska</mat-option>
+                    <mat-option value="ce">Savinjska</mat-option>
+                    <mat-option value="za">Zasavska</mat-option>
+                </mat-optgroup>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="row dark">
+        <div class="areachart-wrapper dark">
+            <ngx-charts-line-chart 
+            (window:resize)="onResize($event)"
+            [view]="view"
+            [legendTitle]="legendTitle"
+            [results]="tempCovidData"
+            [legend]="showLegend"
+            [xAxis]="xAxis"
+            [yAxis]="yAxis"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [timeline]="timeline"
+            [autoScale]="autoScale"
+            scheme="picnic"
+            (select)="onLabelSelect($event)"
+            ></ngx-charts-line-chart>
+        </div>
+    </div>
+
+    <h4>STANJE V SLOVENIJI DO DNEVA</h4>
+    <div class="row">
+        <mat-form-field appearance="fill">
+            <mat-date-range-input [rangePicker]="picker2">
+            <input matStartDate placeholder="Datum od" #dateFrom2>
+            <input matEndDate  placeholder="Datum do" #dateTo2 (dateChange)="formatDateAndGetCovidToDateData(dateFrom2.value, dateTo2.value)">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker2></mat-date-range-picker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Regije</mat-label>
+            <mat-select [formControl]="regionForm" [(ngModel)]="defRegion">
+                <mat-option value="Slovenija">Slovenija</mat-option>
+                <mat-optgroup [label]="'Regije'">
+                    <mat-option value="kr">Gorenjska</mat-option>
+                    <mat-option value="ng">Goriška</mat-option>
+                    <mat-option value="nm">Jugovzhodna</mat-option>
+                    <mat-option value="sg">Koroška</mat-option>
+                    <mat-option value="kp">Obalno-kraška</mat-option>
+                    <mat-option value="lj">Osrednjeslovenska</mat-option>
+                    <mat-option value="mb">Podravska</mat-option>
+                    <mat-option value="ms">Pomurska</mat-option>
+                    <mat-option value="kk">Posavska</mat-option>
+                    <mat-option value="po">Primorsko-notranjska</mat-option>
+                    <mat-option value="ce">Savinjska</mat-option>
+                    <mat-option value="za">Zasavska</mat-option>
+                </mat-optgroup>
+            </mat-select>
+        </mat-form-field>
+    
+    </div>
+
+    <div class="row dark">
+        <div class="areachart-wrapper dark">
+            <ngx-charts-line-chart 
+            (window:resize)="onResize($event)"
+            [view]="view"
+            [legendTitle]="legendTitle"
+            [results]="tempCovidToDateData"
+            [legend]="showLegend"
+            [xAxis]="xAxis"
+            [yAxis]="yAxis"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [timeline]="timeline"
+            [autoScale]="autoScale"
+            scheme="forest"
+            (select)="onLabelSelect2($event)"
+            ></ngx-charts-line-chart>
+        </div>
+    </div>
+
+
+    <!-- UKREPI -->
+    <h4>UKREPI VLADE</h4>
+    <div class="row">
+        <mat-form-field appearance="fill">
+            <mat-date-range-input [rangePicker]="picker3">
+            <input matStartDate placeholder="Datum od" #dateFrom3>
+            <input matEndDate  placeholder="Datum do" #dateTo3 (dateChange)="formatDateAndGetGovResData(dateFrom3.value, dateTo3.value)">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker3></mat-date-range-picker>
+        </mat-form-field>
+    </div>
+
+    <div class="row dark">
+        <div class="areachart-wrapper dark">
+            <ngx-charts-line-chart 
+            (window:resize)="onResize($event)"
+            [view]="view"
+            [legendTitle]="legendTitle"
+            [results]="tempGovResData"
+            [legend]="showLegend"
+            [xAxis]="xAxis"
+            [yAxis]="yAxis"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="'Indeks'"
+            [timeline]="timeline"
+            [autoScale]="autoScale"
+            scheme="cool"
+            (select)="onLabelSelect3($event)"
+            ></ngx-charts-line-chart>
+        </div>
+    </div>
+</div>

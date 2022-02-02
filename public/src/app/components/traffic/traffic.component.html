@@ -1,0 +1,149 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container" #container>
+    <!-- CESTNI PROMET -->
+    <h4>CESTNI PROMET</h4>
+    <div class="row">
+        <mat-form-field appearance="fill">
+            <mat-date-range-input [rangePicker]="pickerRoad">
+            <input matStartDate placeholder="Datum od" #dateFromRoad>
+            <input matEndDate  placeholder="Datum do" #dateToRoad (dateChange)="formatDateAndGetRoadData(dateFromRoad.value, dateToRoad.value)">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="pickerRoad"></mat-datepicker-toggle>
+            <mat-date-range-picker #pickerRoad></mat-date-range-picker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Regije/Števna mesta</mat-label>
+            <mat-select [formControl]="stm" multiple>
+              <mat-option (click)="deselect()">Vse</mat-option>
+              <mat-optgroup [label]="'Regije'">
+                <mat-option value="Gorenjska">Gorenjska</mat-option>
+                <mat-option value="Goriška">Goriška</mat-option>
+                <mat-option value="Jugovzhodna">Jugovzhodna</mat-option>
+                <mat-option value="Koroška">Koroška</mat-option>
+                <mat-option value="Obalno-kraška">Obalno-kraška</mat-option>
+                <mat-option value="Osrednjeslovenska">Osrednjeslovenska</mat-option>
+                <mat-option value="Podravska">Podravska</mat-option>
+                <mat-option value="Pomurska">Pomurska</mat-option>
+                <mat-option value="Posavska">Posavska</mat-option>
+                <mat-option value="Primorsko-notranjska">Primorsko-notranjska</mat-option>
+                <mat-option value="Savinjska">Savinjska</mat-option>
+                <mat-option value="Zasavska">Zasavska</mat-option>
+              </mat-optgroup>
+              <mat-optgroup [label]="'Števna mesta'">
+                <mat-option *ngFor="let el of stmData" [value]="el.id">{{el.name}}</mat-option>
+              </mat-optgroup>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" *ngIf="showVehicleType">
+            <mat-label>Tip vozil</mat-label>
+            <mat-select [formControl]="vehicleForm1" [(ngModel)]="vehicleType">
+                <mat-option value="0">Motorji</mat-option>
+                <mat-option value="1">Osebna vozila</mat-option>
+                <mat-option value="2">Avtobusi</mat-option>
+                <mat-option value="3">Lah. tov. promet &lt; 3,5t</mat-option>
+                <mat-option value="4">Sre. tež. promet 3,5-7t</mat-option>
+                <mat-option value="5">Tež. tov. promet &gt; 7t</mat-option>
+                <mat-option value="6">Tovorni promet s prikolico</mat-option>
+                <mat-option value="7">Vlačilci</mat-option>
+                <mat-option value="8">Skupaj</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="row dark">
+        <div class="areachart-wrapper dark">
+            <ngx-charts-line-chart 
+            (window:resize)="onResize($event)"
+            [view]="view"
+            [legendTitle]="legendTitle"
+            [results]="tempRoadData"
+            [legend]="showLegend"
+            [xAxis]="xAxis"
+            [yAxis]="yAxis"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabelRoad"
+            [timeline]="timeline"
+            [autoScale]="autoScale"
+            scheme="horizon"
+            (select)="onLabelSelect($event)"
+            ></ngx-charts-line-chart>
+        </div>
+    </div>
+
+    <!-- ZRAČNI PROMET -->
+    <h4>ZRAČNI PROMET</h4>
+    <div class="row">
+        <mat-form-field appearance="fill">
+            <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate placeholder="Datum od" #dateFrom>
+            <input matEndDate  placeholder="Datum do" #dateTo (dateChange)="formatDateAndGetAirData(dateFrom.value, dateTo.value)">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+    </div>
+
+    <div class="row dark">
+        <div class="areachart-wrapper dark">
+            <ngx-charts-line-chart 
+            (window:resize)="onResize($event)"
+            [view]="view"
+            [legendTitle]="legendTitle"
+            [results]="airData"
+            [legend]="showLegend"
+            [xAxis]="xAxis"
+            [yAxis]="yAxis"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [timeline]="timeline"
+            [autoScale]="autoScale"
+            scheme="picnic"
+            ></ngx-charts-line-chart>
+        </div>
+    </div>
+
+    <!-- POMORSKI PROMET -->
+    <h4>POMORSKI PROMET</h4>
+    <div class="row">
+        <mat-form-field appearance="fill">
+            <mat-date-range-input [rangePicker]="pickerSea">
+            <input matStartDate placeholder="Datum od" #dateFromSea>
+            <input matEndDate  placeholder="Datum do" #dateToSea (dateChange)="formatDateAndGetSeaData(dateFromSea.value, dateToSea.value)">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="pickerSea"></mat-datepicker-toggle>
+            <mat-date-range-picker #pickerSea></mat-date-range-picker>
+        </mat-form-field>
+    </div>
+
+    <div class="row dark">
+        <div class="areachart-wrapper dark">
+            <ngx-charts-line-chart 
+            (window:resize)="onResize($event)"
+            [view]="view"
+            [legendTitle]="legendTitle"
+            [results]="seaData"
+            [legend]="showLegend"
+            [xAxis]="xAxis"
+            [yAxis]="yAxis"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabelSea"
+            [timeline]="timeline"
+            [autoScale]="autoScale"
+            scheme="cool"
+            ></ngx-charts-line-chart>
+        </div>
+    </div>
+</div>
+
+
+
+
+
