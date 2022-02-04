@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "heroku-postbuild": "npm install && npm install @angular/cli -g && cd public && npm install",
+    "heroku-postbuild": "npm install && cd public && npm install && npm install @angular/cli -g &&  npm i @angular-devkit/build-angular",
     "heroku-cleanup": "cd ./public && patch-package"
   },
   "dependencies": {
