@@ -4,8 +4,6 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "heroku-postbuild": "npm install && cd public && npm install @angular/cli -g && npm install",
-    "heroku-cleanup": "cd ./public && patch-package"
   },
   "dependencies": {
     "@swimlane/ngx-charts": "^19.2.0",

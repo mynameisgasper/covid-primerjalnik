@@ -7,9 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "./node_modules/.bin/patch-package && ng build --prod --aot",
-    "heroku-cleanup": "./node_modules/.bin/patch-package"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
