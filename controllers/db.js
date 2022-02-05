@@ -4,14 +4,17 @@ const connectionStringProd = 'postgres://rttnexchhysare:bf9311b533b0fee7847e968e
 //(database = "postgres", user='postgres', password='postgres', host='127.0.0.1', port= '5432')
 
 let isProduction = (process.env.NODE_ENV === 'production');
-const pool = isProduction ? new Pool({connectionStringProd}) : new Pool({connectionString})
+const pool = pool = new Pool({connectionString})
 
 
 if (isProduction) {
+  pool = new Pool({
+    connectionString: connectionStringProd,
+    ssl: {
+      rejectUnauthorized: false
+      }
+    }) 
   console.log("Prod")
-  console.log(pool)
-} else {
-  console.log("Dev")
   console.log(pool)
 }
 
