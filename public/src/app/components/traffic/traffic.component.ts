@@ -53,7 +53,7 @@ export class TrafficComponent implements OnInit {
   
 
   constructor(private trafficService:TrafficService, private route:ActivatedRoute) { 
-    this.view = [innerWidth / 1.5, 400];
+    this.view = [innerWidth / 2.25, 400];
   }
 
   ngOnInit(): void {
@@ -160,10 +160,6 @@ export class TrafficComponent implements OnInit {
     dateArray[1] = dateArray[2];
     dateArray[2] = temp;
     return dateArray.join('-');
-  }
-
-  onResize(event) {
-    this.view = [this.container.nativeElement.offsetWidth, 400];
   }
 
   onLabelSelect(event) {

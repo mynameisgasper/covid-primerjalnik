@@ -48,7 +48,7 @@ export class CovidComponent implements OnInit {
   colorScheme = "cool";
 
   constructor(private covidService:CovidService, private route:ActivatedRoute) {
-    this.view = [innerWidth / 1.5, 400];
+    this.view = [innerWidth / 2.25, 400];
   }
 
   ngOnInit(): void {
@@ -217,10 +217,6 @@ export class CovidComponent implements OnInit {
     return selected && selected.length > 0;
   }
 
-  onResize(event) {
-    this.view = [this.container.nativeElement.offsetWidth, 400];
-  }
-
   onRegionChange() {
     this.regionForm.valueChanges.subscribe(val => {
       this.defRegion = val;
@@ -234,12 +230,4 @@ export class CovidComponent implements OnInit {
       this.getCovidData(this.dateFrom, this.dateTo, this.defRegion1);
     })
   }
-  /*
-  public styleVerticalAxis(tick) {
-    var day = new Date(tick);
-    var epidemyStart = new Date('2020-03-12');
-    console.log(epidemyStart.getDate());
-    console.log(day.getDate);
-    return {stroke: '#fff'};
-  }*/
 }

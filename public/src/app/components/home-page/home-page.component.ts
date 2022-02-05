@@ -98,7 +98,7 @@ export class HomePageComponent implements OnInit {
               private covidService:CovidService,
               private trafficService:TrafficService, 
               private route:ActivatedRoute) {
-    this.view = [innerWidth / 1.5, 400];
+    this.view = [innerWidth / 2.25, 400];
     this.minDate = new Date(2020, 0, 15);
     this.maxDate = new Date(2021, 11, 23);
    }
@@ -122,7 +122,6 @@ export class HomePageComponent implements OnInit {
   getSummary() {
     
     this.covidService.getSummary().then((result)=>{
-
       this.summary.push({name: "Testi na dan: PCR", value: result['testsToday'].value});
       this.summary.push({name: "Testi na dan: HAT", value: result['testsTodayHAT'].value});
       this.summary.push({name: "Novi primeri", value: result['testsToday'].subValues['positive']});
@@ -429,9 +428,5 @@ export class HomePageComponent implements OnInit {
         return line.name === name && line.series[0] !== undefined;
     });
     return selected && selected.length > 0;
-  }
-
-  onResize(event) {
-    this.view = [this.container.nativeElement.offsetWidth, 400];
   }
 }

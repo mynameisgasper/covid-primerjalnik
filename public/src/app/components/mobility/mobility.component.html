@@ -16,7 +16,6 @@
     <div class="row dark">
         <div class="areachart-wrapper dark">
             <ngx-charts-line-chart 
-            (window:resize)="onResize($event)"
             [view]="view"
             [legendTitle]="legendTitle"
             [results]="tempAppleData"
@@ -73,7 +72,6 @@
     <div class="row dark">
         <div class="areachart-wrapper dark">
             <ngx-charts-line-chart 
-            (window:resize)="onResize($event)"
             [view]="view"
             [legendTitle]="legendTitle"
             [results]="tempGoogleData"
