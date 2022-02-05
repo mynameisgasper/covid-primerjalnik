@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "https://covid-primerjalnik.herokuapp.com"
+  apiUrl: "https://covid-primerjalnik.herokuapp.com/api"
 };
