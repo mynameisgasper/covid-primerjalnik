@@ -61,4 +61,4 @@ typings/
 .next
 
 /public/node_modules
-/public/dist/public
+/public/package-lock.json
