@@ -4,7 +4,7 @@ const connectionStringProd = 'postgres://rttnexchhysare:bf9311b533b0fee7847e968e
 //(database = "postgres", user='postgres', password='postgres', host='127.0.0.1', port= '5432')
 
 let isProduction = (process.env.NODE_ENV === 'production');
-const pool = pool = new Pool({connectionString})
+const pool = new Pool({connectionString})
 
 
 if (isProduction) {
